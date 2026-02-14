@@ -1,0 +1,66 @@
+{
+  "name": "@shibiramaiyan/sf-profile-full",
+  "description": "Salesforce CLI plugin to retrieve full Profile metadata via readMetadata()",
+  "version": "1.0.0",
+  "author": "shibiramaiyan",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib",
+    "/messages",
+    "/oclif.manifest.json"
+  ],
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "sf",
+    "topicSeparator": " ",
+    "topics": {
+      "profile": {
+        "description": "Commands to work with Salesforce Profiles."
+      },
+      "profile.retrieve": {
+        "description": "Commands to retrieve Salesforce Profiles."
+      }
+    },
+    "flexibleTaxonomy": true
+  },
+  "scripts": {
+    "build": "tsc -p . && node --loader ts-node/esm --no-warnings=ExperimentalWarning ../../.gemini/antigravity/scratch/sf-profile-full/node_modules/.bin/oclif manifest",
+    "prebuild": "rm -rf lib",
+    "build:only": "tsc -p .",
+    "clean": "rm -rf lib oclif.manifest.json",
+    "test": "mocha 'test/**/*.test.ts' --timeout 10000",
+    "test:coverage": "c8 --all --src src --exclude 'src/commands/**' --exclude 'src/index.ts' --100 --reporter text --reporter html mocha 'test/**/*.test.ts' --timeout 10000",
+    "lint": "eslint src/ test/ --ext .ts"
+  },
+  "dependencies": {
+    "@oclif/core": "^4",
+    "@salesforce/core": "^8",
+    "@salesforce/sf-plugins-core": "^12",
+    "@salesforce/source-deploy-retrieve": "^12",
+    "fast-xml-parser": "^4.5"
+  },
+  "devDependencies": {
+    "@oclif/test": "^4",
+    "@salesforce/ts-sinon": "^1",
+    "@types/chai": "^4",
+    "@types/mocha": "^10",
+    "@types/node": "^20",
+    "@types/sinon": "^17",
+    "@typescript-eslint/eslint-plugin": "^7",
+    "@typescript-eslint/parser": "^7",
+    "c8": "^10.1.3",
+    "chai": "^4",
+    "eslint": "^8",
+    "mocha": "^10",
+    "oclif": "^4",
+    "sinon": "^17",
+    "ts-node": "^10",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
